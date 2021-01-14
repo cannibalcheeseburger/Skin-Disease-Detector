@@ -13,7 +13,7 @@ def bar_progress(current, total, width=80):
     sys.stdout.flush()
 
 diseases = ['Rosacea','Allergic-Contact-Dermatitis','eczema',
-        'Psoriasis','Cellulitis','Scabies','Measles',
+        'Psoriasis','Cellulitis','Scabies',
         'Scarlet-fever','Kawasaki-Syndrome']
 
 url = "http://www.dermnet.com/images/{dis}/photos/"
