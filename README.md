@@ -33,7 +33,7 @@ pip install -r requirements.txt
 After installing requirements 
 
 ```
-python download_dataset
+python download_dataset.py
 ```
 
 
