@@ -11,8 +11,8 @@
 Clone the repository and checkout to stable commit
 
 ```
-git clone https://github.com/cannibalcheeseburger/subtitles-downloader.git
-cd subtitles-downloader
+git clone https://github.com/cannibalcheeseburger/electrothon.git
+cd electrothon
 ```
 
 ### Install Requirements
