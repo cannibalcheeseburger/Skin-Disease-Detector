@@ -28,7 +28,7 @@ for disease in diseases:
     print("\n"+disease+ " downloading .....")
 
     os.mkdir(os.path.join(os.path.join(working_dir,'Dataset'),disease))
-    for i in range(1,30): 
+    for i in range(1,2): #change
         print("Page "+ str(i))
         req = Request(url.format(dis = disease)+str(i))
         web_byte = urlopen(req).read()
