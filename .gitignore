@@ -135,3 +135,5 @@ try.*
 
 dataset
 data
+
+*.ipynb
