@@ -102,6 +102,7 @@ traitlets
 typing-extensions==3.7.4.3
 urllib3==1.26.2
 uvicorn==0.13.3
+uvloop
 virtualenv==20.4.0
 virtualenv-clone==0.5.4
 wcwidth==0.2.5
