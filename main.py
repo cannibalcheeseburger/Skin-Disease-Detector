@@ -4,6 +4,11 @@ import uvicorn
 
 app = FastAPI()
 
+@app.get('/')
+async def hello():
+    return {"hello": "there"}
+
 @app.post('/predict')
 async def predict(file: UploadFile = File(...)):
-    return 'ok'
+    return {"all":"right"}
+
