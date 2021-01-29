@@ -35,8 +35,8 @@ idna==2.10
 image==1.5.33
 importlib-metadata==3.4.0
 ipykernel==5.4.3
-ipython==7.19.0
-ipython-genutils==0.2.0
+ipython
+ipython-genutils
 ipywidgets==7.6.3
 jedi==0.18.0
 Jinja2==2.11.2
