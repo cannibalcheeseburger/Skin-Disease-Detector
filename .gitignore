@@ -137,3 +137,5 @@ dataset
 data
 Pipfile
 Pipfile.lock
+*.h5
+temp/*
