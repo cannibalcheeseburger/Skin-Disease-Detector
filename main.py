@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request,UploadFile,File
 from fastapi.templating import Jinja2Templates
 import uvicorn
 from random import randint
-from src import const
+from src import const,preprocess
 import os
 import shutil
 
@@ -18,10 +18,11 @@ async def home(request : Request):
 async def predict(image: UploadFile = File(...)):
     temp_file = save_to_disk(image,path="temp",save_as='temp')
     #module and fuction to predict text use await and async
-    with open(const.diagnosis_dir+ const.diseases[randint(0,11)],'r',encoding='utf-8') as f:
+    result =  preprocess.predict()
+    with open(const.diagnosis_dir+ const.diseases[result],'r',encoding='utf-8') as f:
         diagnosis = f.read()
-    return {str(randint(0,100))+'%':diagnosis}
-
+    #return {str(randint(0,100))+'%':diagnosis}
+    return {const.diseases[result]: diagnosis}
 
 def save_to_disk(uploadedfile,path='.',save_as='default'):
         extension = os.path.splitext(uploadedfile.filename)[-1]
