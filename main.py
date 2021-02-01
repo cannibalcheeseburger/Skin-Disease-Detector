@@ -16,8 +16,8 @@ async def home(request : Request):
 
 @app.post('/predict')
 async def predict(image: UploadFile = File(...)):
-    save_to_disk(image,path="temp",save_as='temp')
-    result =  preprocess.predict()
+    temp_file = save_to_disk(image,path="temp",save_as='temp')
+    result =  preprocess.predict(temp_file)
     with open(const.diagnosis_dir + const.diseases[result],'r',encoding='utf-8') as f:
         diagnosis = f.read()
     return {const.diseases[result]: diagnosis}
@@ -27,3 +27,4 @@ def save_to_disk(uploadedfile,path='.',save_as='default'):
         temp_file = os.path.join(path,save_as+extension)
         with open(temp_file,'wb') as buffer:
             shutil.copyfileobj(uploadedfile.file,buffer)
+        return temp_file
