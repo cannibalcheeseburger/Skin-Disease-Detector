@@ -16,12 +16,10 @@ async def home(request : Request):
 
 @app.post('/predict')
 async def predict(image: UploadFile = File(...)):
-    temp_file = save_to_disk(image,path="temp",save_as='temp')
-    #module and fuction to predict text use await and async
+    save_to_disk(image,path="temp",save_as='temp')
     result =  preprocess.predict()
-    with open(const.diagnosis_dir+ const.diseases[result],'r',encoding='utf-8') as f:
+    with open(const.diagnosis_dir + const.diseases[result],'r',encoding='utf-8') as f:
         diagnosis = f.read()
-    #return {str(randint(0,100))+'%':diagnosis}
     return {const.diseases[result]: diagnosis}
 
 def save_to_disk(uploadedfile,path='.',save_as='default'):
@@ -29,4 +27,3 @@ def save_to_disk(uploadedfile,path='.',save_as='default'):
         temp_file = os.path.join(path,save_as+extension)
         with open(temp_file,'wb') as buffer:
             shutil.copyfileobj(uploadedfile.file,buffer)
-        return temp_file
