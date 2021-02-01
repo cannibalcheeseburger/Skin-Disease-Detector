@@ -8,4 +8,4 @@ def predict():
     test_image = np.expand_dims(test_image, axis = 0)
     model = models.load_model('best_model.h5')
     result = model.predict(test_image)
-    return result.argmax()
+    return np.argmax(result)
