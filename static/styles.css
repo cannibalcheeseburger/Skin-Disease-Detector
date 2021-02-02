@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h3 {
+  padding: 20px;
+  text-align: center;
+}
+
+.loading {
+  margin: auto;
+  display: none;
+}
+
+.loading img {
+  display: block;
+  margin: auto;
+}
+
+.row {
+}
+
+.sidebar {
+  background-color: grey;
+  height: 100vh;
+}
+
+.workarea {
+  margin: auto;
+  margin-top: 0;
+}
+
+.topbar {
+}
+
+.bottombar {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+label {
+  margin: auto;
+}
+
+button {
+  margin: auto;
+  display: block;
+}
