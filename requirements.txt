@@ -112,3 +112,5 @@ wget==3.2
 widgetsnbextension==3.5.1
 wrapt==1.12.1
 zipp==3.4.0
+httptools
+aiofiles

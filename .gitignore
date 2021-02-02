@@ -135,6 +135,7 @@ try.*
 
 dataset
 data
-
-*.ipynb
 Pipfile
+Pipfile.lock
+*.h5
+temp/*
