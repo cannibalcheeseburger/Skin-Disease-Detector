@@ -5,6 +5,8 @@ from random import randint
 from src import const, preprocess
 import os
 import shutil
+import json
+
 
 templates = Jinja2Templates(directory="./Frontend/templates")
 
@@ -20,9 +22,9 @@ async def home(request: Request):
 async def predict(image: UploadFile = File(...)):
     temp_file = save_to_disk(image,path="temp",save_as='temp')
     result =  preprocess.predict(temp_file)
-    with open(const.diagnosis_dir + const.diseases[result],'r',encoding='utf-8') as f:
-        diagnosis = f.read()
-    return {const.diseases[result]: diagnosis}
+    with open(const.diagnosis_dir + const.diseases[result]+".json",'r',encoding='utf-8') as f:
+        diagnosis = json.load(f)
+    return diagnosis
 
 def save_to_disk(uploadedfile,path='.',save_as='default'):
         extension = os.path.splitext(uploadedfile.filename)[-1]

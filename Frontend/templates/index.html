@@ -4,11 +4,11 @@
 <link rel="stylesheet" href="./index.css">
 
 <body>
-    <!-- <div class="container">
+    <div class="container">
         <div class="jumbotron">
             <h1> Skin Disease Detection</h1>
             <p> Diagnosis from Images
-            <p>
+                <p>
         </div>
         <label for="image_file">Select image(s)</label>
         <input class="btn btn-warning" type="file" id="image_file" name="myfile" multiple>
@@ -18,15 +18,15 @@
         <hr style="width:100%;text-align:left;margin-left:0">
         <hr style="width:100%;text-align:left;margin-left:0">
         <div id="bulk_result" style="display: grid; grid-template-columns: repeat(5, 1fr); grid-gap: 10px;">
-        </div> -->
+        </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="">
-                <h1 class="text-center">Skin Disease Detection</h1>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="">
+                    <h1 class="text-center">Skin Disease Detection</h1>
+                </div>
             </div>
         </div>
-    </div>
 </body>
 
 <script>
@@ -43,7 +43,7 @@
             contentType: false,
             cache: false,
             processData: false,
-            success: function (data) {
+            success: function(data) {
 
                 swal({
                     title: data[0].name,
