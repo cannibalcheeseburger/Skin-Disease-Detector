@@ -10,37 +10,76 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 sidebar"></div>
+            <div class="col-md-3 sidebar">
+
+
+
+
+            </div>
             <div class="col-12 col-md-6 workarea">
                 <div class="topbar">
+
                     <h1>Skin Disease Detection</h1>
-                    <h3>Diagnosis from Images</h3>
+
+
+                    <h3>Diagnosis from image</h3>
                 </div>
 
                 <div class="loading"><img src="/static/load.svg"></div>
                 <div class="bottombar">
 
                     <label for="image_file">Upload an image:</label>
-                    <input class="btn btn-warning " type="file" id="image_file" name="myfile">
+                    <input class="btn btn-warning " type="file" id="image_file" name="myfile" accept="image/*" />
+                </div>
+                <div class="bottombarr"><button class="btn btn-success" onclick="predictImage()"> Diagnose </button>
+                </div>
 
-                    <button class="btn btn-success" onclick="predictImage()"> Diagnose </button>
+                <div class="information">
+                    <div class="dis-image-div">
+                        <img src='#' alt="img" id="dis-image">
+                    </div>
+                    <h1 id="info-disease"></h1>
+                    <h4>Summary</h4>
+                    <ul id="info-summary"></ul>
+
+                    <h4>Symptoms</h4>
+                    <ul id="info-symptoms"></ul>
+
+                    <h4>Duration</h4>
+                    <p id="info-duration"></p>
+
                 </div>
             </div>
 
 
         </div>
     </div>
+
+    <div class="footer bg-dark w-100">
+        <p>Made with &hearts; by Team ElectroCat.</p>
+        <img id='mandi' src="/static/ieee_logo.png" alt="IEEE Mandi">
+
+        <img id='electro' src="/static/electrothon_logo.png" alt="Electrothon">
+
+    </div>
+
 </body>
 
 <script>
+
+    document.getElementById('image_file').onchange = function () {
+        $('.btn-success').css("display", "block")
+    };
+
     function predictImage() {
+
         $('.loading').css("display", "block");
-        $('.bottombar').css("visibility", "hidden");
+        $('.bottombar, .bottombarr, .btn-success').css("display", "none");
+
         var files = document.getElementById("image_file").files
         var formData = new FormData();
         var endpoint = '/predict';
         formData.append('image', files[0])
-
 
         $.ajax({
             type: 'POST',
@@ -51,17 +90,62 @@
             processData: false,
             success: function (data) {
 
-                swal({
-                    title: data["Disease"],
-                    text: data["Summary"],
-                    icon: "info",
-                })
+                $('.information').css("visibility", "visible")
+
+                $('#info-disease').text(data["Disease"])
+                $("#info-duration").text(data["Duration"])
+
+                var summ = document.getElementById("info-summary")
+                var itr = data["Summary"]
+                if (itr) {
+                    for (var i = 0; i < itr.length; i++) {
+                        var ele = document.createElement("li");
+                        var text = itr[i];
+                        ele.textContent = text
+                        summ.appendChild(ele)
+                    }
+                }
+
+                // for symptoms
+                var symp = document.getElementById("info-symptoms")
+                var itr = data["Symptoms"]
+                if (itr) {
+                    for (var i = 0; i < itr.length; i++) {
+                        var ele = document.createElement("li");
+                        var text = itr[i];
+                        ele.textContent = text
+                        symp.appendChild(ele)
+                    }
+                }
+
+                if (files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#dis-image')
+                            .attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(files[0]);
+                }
+
+
+                // swal({
+                //     title: data["Disease"],
+                //     text: data["Summary"],
+                //     icon: "info",
+                // })
             }
 
         }).then(() => {
             $('.loading').css("display", "none");
-            $('.bottombar').css("visibility", "visible");
+
         });
 
+    }
+
+    function predictAgain() {
+        $('.bottombar, .bottombarr').css("visibility", "visible");
+        document.getElementById('image_file').value = "";
     }
 </script>
