@@ -7,8 +7,8 @@ This is our submission for Electrothon 3.0 as a framework for Skin Disease Detec
 
 ## Authors
 
- - [Kashish Srivastava](https://github.com/cannibalcheeseburger)
  - [Akash Rana](https://github.com/akaxhrana)
+ - [Kashish Srivastava](https://github.com/cannibalcheeseburger)
  - [Mukul Thakur](https://github.com/Mukulthakur17)
 
 ## Overview
