@@ -2,13 +2,11 @@ from fastapi import FastAPI, Request, UploadFile, File
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import uvicorn
-from random import randint
 from src import const, preprocess
 import os
 import shutil
 from pathlib import Path
 import json
-import time
 
 templates = Jinja2Templates(directory="./templates")
 
